@@ -96,4 +96,16 @@ test.it('BGLE discount', function(){
     let result = bagel.total();
     test.assertFloatEquals(result, 2.98);
 })
+
+test.it('Random order', function(){
+    let bagel = new Basket();
+    bagel.order('BGLE');
+    bagel.order('BGLO');
+    bagel.order('BGLP');
+    bagel.order('COF');
+    let result = bagel.total();
+    test.assertFloatEquals(result, 2.23);
+})
+
 test.finResult();
+
