@@ -1,7 +1,6 @@
 const Cost = require('./cost');
-const sell = require('./sold');
-
-
+const stock = require('./sold');
+//ed wants to format prices to right but apart from that it is good to go
 //works out what should be printed on the receipt and prints it 
 
 class Receipt{
@@ -40,81 +39,51 @@ class Receipt{
     }
 
     quantity(basket){
-        let BGLO = this.quantityOfBGLO(basket);
-        let BGLE = this.quantityOfBGLE(basket);
-        let BGLP = this.quantityOfBGLP(basket);
-        let COF = this.quantityOfCOF(basket);
-        let result = this.basket( BGLO, BGLE, BGLP, COF);
+        let BGLO = 0;
+        let BGLE = 0;
+        let BGLP = 0;
+        let COF = 0;
+        for(let i = 0; i<basket.length;i++){
+            if(basket[i] === 'BGLO'){
+                BGLO++;
+            }
+            else if(basket[i] === 'BGLE'){
+                BGLE++;
+            }
+            else if(basket[i] === 'BGLP'){
+                BGLP++;
+            }
+            else{
+                COF++;
+            }
+        }
+        let result = this.basket(BGLO, BGLE, BGLP, COF);
         return result;
     }
 
-    basket(blgo, bgle, bglp, cof){
+    basket(bglo, bgle, bglp, cof){
         let str = '';
-        if(blgo > 0){
-            let result = this.getprice('BGLO', bglo);
-            str += `Onion Bagel\t ${bglo}\t £${result}\n`;
+        let result = {};
+        let quan = [bglo, bgle, bglp, cof];
+        result['BGLO'] = this.getprice('BGLO', bglo);
+        result['BGLE'] = this.getprice('BGLE', bgle);
+        result['BGLP'] = this.getprice('BGLP', bglp);
+        result['COF'] = this.getprice('COF', cof);
+        let i = 0;
+        for(var key in result){
+            if(result[key] > parseFloat(0)){
+                str += `${stock.items[i]}\t ${quan[i]}\t £${result[key]}\n`;
+            }
+            i++;
         }
-        if(bgle > 0){
-            let result = this.getprice('BGLE', bgle);
-            str += `Everything Bagel\t ${bgle}\t £${result}\n`;
-        }
-        if(bglp > 0){
-            let result = this.getprice('BGLP', bglp);
-            str += `Plain Bagel\t ${bglp}\t £${result}\n`;
-        }
-        if(cof > 0){
-            let result = this.getprice('COF', cof);
-            str += `Coffee \t ${cof}\t £${result}\n`;
-        }
-        str += '----------------------------\n';
+        str += ' ----------------------------\n';
         return str;
     }
 
     getprice(item, num){
-        this.totalPrices += sell[item] * num;
-        return sell[item] * num;
+        this.totalPrices += stock.sell[item] * num;
+        return stock.sell[item] * num;
     }
-
-    quantityOfBGLO(basket){
-        let total = 0;
-        for(let i = 0; i<basket.length; i++){
-            if(basket[i] === 'BGLO'){
-                total++;
-            }
-        }
-        return total;
-    }
-
-    quantityOfBGLE(basket){
-        let total = 0;
-        for(let i = 0; i<basket.length; i++){
-            if(basket[i] === 'BGLE'){
-                total++;
-            }
-        }
-        return total;
-    }
-
-    quantityOfBGLP(basket){
-        let total = 0;
-        for(let i = 0; i<basket.length; i++){
-            if(basket[i] === 'BGLP'){
-                total++;
-            }
-        }
-        return total;
-    }
-
-    quantityOfCOF(basket){
-        let total = 0;
-        for(let i = 0; i<basket.length; i++){
-            if(basket[i] === 'COF'){
-                total++;
-            }
-        }
-        return total;
-    }
-
 }
 
 module.exports = Receipt;

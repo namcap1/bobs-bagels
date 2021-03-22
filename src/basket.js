@@ -1,5 +1,5 @@
 const Cost = require('./cost');
-const sell = require('./sold');
+const stock = require('./sold');
 const Receipt = require('./receipt');
 
 //The main class for bobs bagel 
@@ -15,7 +15,7 @@ class Basket{
     
     order(item){
         if(this.actuallyServe(item)){
-            if(!this.full()){
+            if(this.full()){
                 this._basket.push(item);
                 return this._basket;
             }
@@ -29,7 +29,7 @@ class Basket{
     }
     
     full(){
-        return !(this._basket.length < this.max_capacity);
+        return this._basket.length < this.max_capacity;
     }
 
     remove(item){
@@ -46,7 +46,7 @@ class Basket{
     }
 
     actuallyServe(item){
-        return item in sell;
+        return item in stock.sell;
     }
 
     total(){

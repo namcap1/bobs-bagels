@@ -1,4 +1,4 @@
-const sell = require('./sold');
+const stock = require('./sold');
 
 //works out all the costs including discounts.
 
@@ -10,7 +10,7 @@ class Cost{
     
     total(basket){
         for(let i = 0; i<basket.length; i++){
-            this._total += parseFloat(sell[basket[i]]);
+            this._total += parseFloat(stock.sell[basket[i]]);
         }
         this.specialDiscounts(basket);
         return this._total.toFixed(2);
