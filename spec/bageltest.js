@@ -1,6 +1,7 @@
 const test = require('../test-framework');
 const Basket = require('../src/bobbagel');
 
+
 const fullmessage = 'Basket is full';
 const neverinbasket = 'Was never in your basket.';
 const dontserve = 'We don\'t serve this';
@@ -107,5 +108,18 @@ test.it('Random order', function(){
     test.assertFloatEquals(result, 2.23);
 })
 
+console.log('Reciept');
+
+test.it('Reciept', function(){
+    let bagel = new Basket();
+    bagel.order('BGLE');
+    bagel.order('COF');
+    let result = bagel.print();
+    test.assertEquals(result, typeof 'string');
+}) 
+
+
+
 test.finResult();
+
 

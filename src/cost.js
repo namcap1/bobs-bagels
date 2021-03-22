@@ -2,9 +2,11 @@ const sell = require('./sold');
 
 
 class Cost{
+
     constructor(){
         this._total = 0;
     }
+    
     total(basket){
         for(let i = 0; i<basket.length; i++){
             this._total += parseFloat(sell[basket[i]]);

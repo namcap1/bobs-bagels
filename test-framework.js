@@ -12,7 +12,7 @@ const test = {
             console.log("\x1b[32m%s\x1b[0m", `\t${str}`);
         }catch(error){
             fail++;
-            console.log("\x1b[32m%s\x1b[0m", `\t${str}`);
+            console.log("\x1b[31m%s\x1b[0m", `\t${str}`);
             console.log(error.stack);
         }
     },

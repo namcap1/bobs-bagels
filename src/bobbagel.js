@@ -1,18 +1,21 @@
 const Cost = require('./cost');
 const sell = require('./sold');
+const Receipt = require('./receipt');
 
 class Basket{
+
     constructor(max_capacity = 20){
         this.max_capacity = max_capacity;
-        this.basket = [];
+        this._basket = [];
         this.cost = new Cost();
+        this.receipt = new Receipt();
     }
     
     order(item){
         if(this.actuallyServe(item)){
             if(!this.full()){
-                this.basket.push(item);
-                return this.basket;
+                this._basket.push(item);
+                return this._basket;
             }
             else{
                 return 'Basket is full';
@@ -24,7 +27,7 @@ class Basket{
     }
     
     full(){
-        if(this.basket.length < this.max_capacity){
+        if(this._basket.length < this.max_capacity){
             return false;
         }
         return true;
@@ -32,15 +35,15 @@ class Basket{
 
     remove(item){
         if(this.existInBasket(item)){
-            let index = this.basket.indexOf(item);
-            this.basket.splice(index, 1);
-            return this.basket;
+            let index = this._basket.indexOf(item);
+            this._basket.splice(index, 1);
+            return this._basket;
         }
         return 'Was never in your basket.';
     }
 
     existInBasket(item){
-        if(this.basket.includes(item)){
+        if(this._basket.includes(item)){
             return true;
         }
         return false;
@@ -54,7 +57,15 @@ class Basket{
     }
 
     total(){
-        return this.cost.total(this.basket);
+        return this.cost.total(this._basket);
+    }
+
+    print(){
+        return this.receipt.print(this._basket);
+    }
+
+    get basket(){
+        return this._basket;
     }
 
 }
