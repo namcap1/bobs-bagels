@@ -2,6 +2,8 @@ const Cost = require('./cost');
 const sell = require('./sold');
 const Receipt = require('./receipt');
 
+//The main class for bobs bagel 
+
 class Basket{
 
     constructor(max_capacity = 20){
@@ -27,10 +29,7 @@ class Basket{
     }
     
     full(){
-        if(this._basket.length < this.max_capacity){
-            return false;
-        }
-        return true;
+        return !(this._basket.length < this.max_capacity);
     }
 
     remove(item){
@@ -43,17 +42,11 @@ class Basket{
     }
 
     existInBasket(item){
-        if(this._basket.includes(item)){
-            return true;
-        }
-        return false;
+        return this._basket.includes(item);
     }
 
     actuallyServe(item){
-        if(item in sell){
-            return true;
-        }
-        return false;
+        return item in sell;
     }
 
     total(){

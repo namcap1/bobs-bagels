@@ -1,4 +1,4 @@
-const Basket = require('../src/bobbagel');
+const Basket = require('../src/basket');
 
 const fullmessage = 'Basket is full';
 const neverinbasket = 'Was never in your basket.';
@@ -105,6 +105,6 @@ describe('Reciept', function(){
         bagel.order('BGLE');
         bagel.order('COF');
         let result = bagel.print();
-        expect(result).toBe(typeof 'string');
+        expect(typeof(result) === 'string').toBe(true);
     });
 });

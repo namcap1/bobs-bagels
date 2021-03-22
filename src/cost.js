@@ -1,5 +1,6 @@
 const sell = require('./sold');
 
+//works out all the costs including discounts.
 
 class Cost{
 

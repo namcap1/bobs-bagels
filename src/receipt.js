@@ -2,6 +2,8 @@ const Cost = require('./cost');
 const sell = require('./sold');
 
 
+//works out what should be printed on the receipt and prints it 
+
 class Receipt{
 
     constructor(){
@@ -28,7 +30,13 @@ class Receipt{
 
     getdate(){
         let date = new Date();
-        return `${date.getDate()} ${date.getTime()}\n ----------------------------\n`;
+        let current_day = date.getUTCDate();
+        let current_month = date.getUTCMonth();
+        let current_year = date.getUTCFullYear();
+        let hour = date.getUTCHours();
+        let minutes = date.getUTCMinutes();
+        let seconds = date.getUTCSeconds();
+        return `${Date.now()} ${date.getTime()}\n ----------------------------\n`;
     }
 
     quantity(basket){
