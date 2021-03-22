@@ -1,8 +1,9 @@
 const Basket = require('../src/basket');
 
-const fullmessage = 'Basket is full';
-const neverinbasket = 'Was never in your basket.';
-const dontserve = 'We don\'t serve this';
+
+const neverinbasket = "Was never in your basket.";
+const dontserve = "We don\'t serve this";
+const fullmess = "Basket is full";
 
 describe('Checking order function', function(){
     it('Ordering', function(){
@@ -13,13 +14,11 @@ describe('Checking order function', function(){
     it('Max capacity', function(){
         let bagel = new Basket(1);
         bagel.order('BGLO');
-        let result = bagel.order('BGLO');
-        expect(result).toBe(fullmessage);
+        expect(() => {bagel.order('BGLO')}).toThrow(new Error(fullmess));
     });
     it('Ordering off menu', function(){
         let bagel = new Basket();
-        let result = bagel.order('poppyseed');
-        expect(result).toBe(dontserve);
+        expect(() =>{bagel.order('poppyseed')}).toThrow(new Error(dontserve));
     });
 });
 
@@ -32,8 +31,7 @@ describe('Checking remove function', function(){
     });
     it('Never in basket', function(){
         let bagel = new Basket();
-        let result = bagel.remove('BGLO');
-        expect(result).toBe(neverinbasket);
+        expect(() => {bagel.remove('BGLO')}).toThrow(new Error(neverinbasket));
     });
 });
 

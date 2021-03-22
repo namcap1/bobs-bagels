@@ -20,11 +20,11 @@ class Basket{
                 return this._basket;
             }
             else{
-                return 'Basket is full';
+                throw new Error('Basket is full');
             }
         }
         else{
-            return 'We don\'t serve this';
+            throw new Error('We don\'t serve this');
         }
     }
     
@@ -38,7 +38,7 @@ class Basket{
             this._basket.splice(index, 1);
             return this._basket;
         }
-        return 'Was never in your basket.';
+        throw new Error("Was never in your basket.");
     }
 
     existInBasket(item){
