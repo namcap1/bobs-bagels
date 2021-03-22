@@ -12,7 +12,7 @@ class Receipt{
 
     print(basket){
         let temp = new Cost();
-        let str = '~~~ Bob\'s Bagels ~~~ \n\n' ;
+        let str = '\t~~~ Bob\'s Bagels ~~~ \n\n' ;
         let date = this.getdate();
         let middle = this.quantity(basket);
         let total = `Total: \t\t${temp.total(basket)}\n\t Thank you`;
@@ -34,9 +34,9 @@ class Receipt{
         let current_month = date.getUTCMonth();
         let current_year = date.getUTCFullYear();
         let hour = date.getUTCHours();
-        let minutes = date.getUTCMinutes();
-        let seconds = date.getUTCSeconds();
-        return `${Date.now()} ${date.getTime()}\n ----------------------------\n`;
+        let minutes = String(date.getUTCMinutes()).padStart(2, "0");
+        let seconds = String(date.getUTCSeconds()).padStart(2, "0");
+        return `\t${current_year}-${current_month}-${current_day} ${hour}:${minutes}:${seconds}\n ----------------------------\n`;
     }
 
     quantity(basket){

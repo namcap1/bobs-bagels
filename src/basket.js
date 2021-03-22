@@ -6,11 +6,11 @@ const Receipt = require('./receipt');
 
 class Basket{
 
-    constructor(max_capacity = 20){
+    constructor(max_capacity = 20, cost = new Cost(), receipt = new Receipt()){
         this.max_capacity = max_capacity;
         this._basket = [];
-        this.cost = new Cost();
-        this.receipt = new Receipt();
+        this.cost = cost;
+        this.receipt = receipt;
     }
     
     order(item){
