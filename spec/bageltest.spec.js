@@ -43,7 +43,7 @@ describe('Prices', function(){
         bagel.order('COF');
         bagel.order('BGLP');
         let result = bagel.total();
-        expect(result).toBe(1.25);
+        expect(parseFloat(result)).toBe(1.25);
     });
     it('Onion bagel discount', function(){
         let bagel = new Basket();
@@ -55,7 +55,56 @@ describe('Prices', function(){
         bagel.order('BGLO');
         bagel.order('BGLO');
         let result = bagel.total();
-        expect(result).toBe(2.98);
+        expect(parseFloat(result)).toBe(2.98);
     });
-    
+    it('BGLP discount', function() {
+        let bagel = new Basket();
+        bagel.order('BGLP');
+        bagel.order('BGLP');
+        bagel.order('BGLP');
+        bagel.order('BGLP');
+        bagel.order('BGLP');
+        bagel.order('BGLP');
+        bagel.order('BGLP');
+        bagel.order('BGLP');
+        bagel.order('BGLP');
+        bagel.order('BGLP');
+        bagel.order('BGLP');
+        bagel.order('BGLP');
+        bagel.order('BGLP');
+        bagel.order('BGLP');
+        let result = bagel.total();
+        expect(parseFloat(result)).toBe(4.77);
+    });
+    it('BGLE discount', function(){
+        let bagel = new Basket();
+        bagel.order('BGLE');
+        bagel.order('BGLE');
+        bagel.order('BGLE');
+        bagel.order('BGLE');
+        bagel.order('BGLE');
+        bagel.order('BGLE');
+        bagel.order('BGLE');
+        let result = bagel.total()
+        expect(parseFloat(result)).toBe(2.98);
+    });
+    it('Assorted order', function(){
+        let bagel = new Basket();
+        bagel.order('BGLE');
+        bagel.order('BGLO');
+        bagel.order('BGLP');
+        bagel.order('COF');
+        let result = bagel.total();
+        expect(parseFloat(result)).toBe(2.23);
+    });   
+});
+
+describe('Reciept', function(){
+    it('Reciept', function() {
+        let bagel = new Basket();
+        bagel.order('BGLE');
+        bagel.order('COF');
+        let result = bagel.print();
+        expect(result).toBe(typeof 'string');
+    });
 });
