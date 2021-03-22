@@ -1,0 +1,24 @@
+{
+  "name": "bobs-bagels",
+  "version": "1.0.0",
+  "description": "Extension 2\r Receipts are important.",
+  "main": "index.js",
+  "dependencies": {
+    "jasmine": "^3.7.0",
+    "mathjs": "^9.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/namcap1/bobs-bagels.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/namcap1/bobs-bagels/issues"
+  },
+  "homepage": "https://github.com/namcap1/bobs-bagels#readme"
+}
